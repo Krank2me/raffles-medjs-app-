@@ -1,0 +1,32 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col align-self-center">
+      <img
+        src="https://res.cloudinary.com/panda2me/image/upload/v1651547068/talks-medjs/Logo_MedellinJS_zziflu.svg"
+        alt="Logo"
+        class="sm"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container text-center mt-5 w-50">
+  <div class="row">
+    <div class="col align-self-center">
+      <div class="card card-color">
+        <div class="card-header card-color__header">Seleccionar ganador</div>
+        <div class="card-body">
+          <div *ngIf="isWiner" class="card-color__registered">
+            <p>{{winner | uppercase}}</p>
+          </div>
+          <button type="button" class="btn btn-primary" (click)="raffle()">
+            GO!
+          </button>
+          <div *ngIf="isAgain" class="card-color__again mt-3">
+            <p>De nuevo!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

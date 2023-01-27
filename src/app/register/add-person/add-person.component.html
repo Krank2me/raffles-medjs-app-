@@ -1,0 +1,64 @@
+<div class="container text-center">
+  <div class="row">
+    <div class="col align-self-center">
+      <img
+        src="https://res.cloudinary.com/panda2me/image/upload/v1651547068/talks-medjs/Logo_MedellinJS_zziflu.svg"
+        alt="Logo"
+        class="sm"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="container text-center mt-5 w-50">
+  <div class="row">
+    <div class="col align-self-center">
+      <div class="card card-color">
+        <div class="card-header card-color__header">Registro rifa MedellinJS</div>
+        <div class="card-body">
+          <form [formGroup]="personForm" id="personForm" novalidate>
+            <div class="form-floating mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="floatingFullname"
+                placeholder="Jhon Doe"
+                formControlName="fullname"
+                required
+              />
+              <label for="floatingFullname">Nombre Completo</label>
+            </div>
+            <div class="form-floating">
+              <input
+                type="email"
+                class="form-control"
+                id="floatingEmail"
+                placeholder="jhon.doe@mail.com"
+                formControlName="email"
+                required
+              />
+              <label for="floatingEmail">Email</label>
+            </div>
+            <button
+              type="button"
+              class="btn btn-primary m-3"
+              (click)="onSubmit()"
+            >
+              Registrar
+            </button>
+            <button
+              type="button"
+              class="btn btn-secondary m-3"
+              (click)="clearForm()"
+            >
+              Borrar
+            </button>
+            <div *ngIf="isAdded" class="card-color__registered">
+              <p>Gracias por reistrarte!</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
