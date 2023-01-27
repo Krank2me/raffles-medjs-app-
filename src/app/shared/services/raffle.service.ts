@@ -8,6 +8,7 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class RaffleService {
+
   private urlBase = environment.api.url;
 
   constructor(private http: HttpClient) {}
