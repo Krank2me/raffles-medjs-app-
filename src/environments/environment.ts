@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
   api: {
-    url: 'http://localhost:4000/api/v1/raffles'
+    url: 'https://raffles-medjs-api-production.up.railway.app/api/v1/raffles'
   }
 };
