@@ -1,5 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
+import { Person } from 'src/app/models/person';
 import { RaffleService } from 'src/app/shared/services/raffle.service';
 
 @Component({
@@ -8,8 +14,9 @@ import { RaffleService } from 'src/app/shared/services/raffle.service';
   styleUrls: ['./add-person.component.scss'],
 })
 export class AddPersonComponent implements OnInit {
-  personForm!: FormGroup;
+  userForm!: FormGroup;
   isAdded: boolean = false;
+  isButtonDisable: boolean = false;
 
   constructor(private fb: FormBuilder, private raffleService: RaffleService) {}
 
@@ -18,17 +25,27 @@ export class AddPersonComponent implements OnInit {
   }
 
   initForm() {
-    this.personForm = this.fb.group({
-      fullname: ['', [Validators.required]],
+    this.userForm = this.fb.group({
+      fullname: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
     });
   }
 
+  get fullname() {
+    return this.userForm.get('fullname') as FormControl;
+  }
+
+  get email() {
+    return this.userForm.get('email') as FormControl;
+  }
+
   onSubmit() {
-    this.raffleService.addPerson(this.personForm.value).subscribe((res) => {
+    this.isButtonDisable = true;
+    this.raffleService.addPerson(this.userForm.value).subscribe((res) => {
       if (res.id) {
         this.isAdded = true;
-        this.personForm.reset();
+        this.isButtonDisable = false;
+        this.userForm.reset();
       }
       setTimeout(() => {
         this.isAdded = false;
@@ -37,6 +54,6 @@ export class AddPersonComponent implements OnInit {
   }
 
   clearForm() {
-    this.personForm.reset();
+    this.userForm.reset();
   }
 }

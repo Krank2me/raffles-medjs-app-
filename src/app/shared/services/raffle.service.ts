@@ -13,7 +13,7 @@ export class RaffleService {
 
   constructor(private http: HttpClient) {}
 
-  addPerson(person: Person): Observable<any> {
+  addPerson(person: any): Observable<any> {
     return this.http
       .post(`${this.urlBase}/addCompetitor`, person)
       .pipe(catchError((error: HttpErrorResponse) => throwError(error)));

@@ -17,7 +17,7 @@
         <div class="card-header card-color__header">Seleccionar ganador</div>
         <div class="card-body">
           <div *ngIf="isWiner" class="card-color__registered">
-            <p>{{winner | uppercase}}</p>
+            <p>{{fullname | uppercase}}</p>
           </div>
           <button type="button" class="btn btn-primary" (click)="raffle()">
             GO!

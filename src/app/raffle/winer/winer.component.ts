@@ -9,7 +9,8 @@ import { RaffleService } from 'src/app/shared/services/raffle.service';
 export class WinerComponent implements OnInit {
   peopleList: string[] = [];
   winerList: string[] = [];
-  winner: string = '';
+  email: string = '';
+  fullname: string = '';
   isWiner: boolean = false;
   isAgain: boolean = false;
 
@@ -21,24 +22,26 @@ export class WinerComponent implements OnInit {
 
   getPeople() {
     this.raffleService.getPeopleList().subscribe((res) => {
-      this.peopleList = res.data;
+      this.peopleList = res?.data;
     });
   }
 
   raffle() {
     this.isAgain = false;
     let ramdom = Math.floor(Math.random() * this.peopleList.length);
+
     if (this.peopleList[ramdom]) {
-      this.winner = this.peopleList[ramdom];
-      let repeat = this.winerList.indexOf(this.winner);
+      let element = this.peopleList[ramdom];
+      let elementJson = JSON.stringify(element);
+      this.email = JSON.parse(elementJson)?.fields?.email;
+      this.fullname = JSON.parse(elementJson)?.fields?.fullname;
+      let repeat = this.winerList.indexOf(this.email);
       if (repeat === -1) {
-        this.winerList.push(this.winner);
+        this.winerList.push(this.email);
         this.isWiner = true;
       } else {
-        this.isAgain = true
+        this.isAgain = true;
       }
-
-
     }
   }
 }
